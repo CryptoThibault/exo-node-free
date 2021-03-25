@@ -1,5 +1,3 @@
-const fs = require('fs')
-
+const readLineSync = require('readline-sync')
 const { mkdirSync } = require('fs')
-
-mkdirSync(process.argv[2])
+mkdirSync(readLineSync.question('Name of directory : '))

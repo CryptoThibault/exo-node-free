@@ -1,4 +1,6 @@
 const readLineSync = require('readline-sync')
+const { readFileSync } = require('fs')
+const vm = require('vm')
 
 while (true) {
   const text = readLineSync.question()
@@ -8,14 +10,21 @@ while (true) {
 
 
 function doCommand(command) {
-  const commandList = ['/help', '/exit', '/cp', '/mkdir', '/write',]
+  const commandList = ['/help', '/cp', '/mkdir', '/rmdir', '/write', '/unlink', '/exit']
   switch (command) {
     case '/help': console.log(`List of all command: ${commandList.join(', ')}`)
       break
+    case '/cp': vm.runInThisContext(readFileSync(__dirname + "/cp.js"))
+      break
+    case '/mkdir': vm.runInThisContext('mkdir.js')
+      break
+    case '/rmdir': vm.runInThisContext('rmdir.js')
+      break
+    case '/write': vm.runInThisContext('write.js')
+      break
+    case '/unlink': vm.runInThisContext('unlink.js')
+      break
     case '/exit': process.exit(1)
-    case '/cp': 'node cp.js origin copy'
-    case '/mkdir': 'node mkdir.js name'
-    case '/write': 'node write.js name content'
     default: console.log('Not a valid command, type /help for help')
   }
 }

@@ -1,3 +1,3 @@
+const readLineSync = require('readline-sync')
 const { unlinkSync } = require('fs')
-
-unlinkSync(process.argv[2])
+unlinkSync(readLineSync.question('Name of file : '))
