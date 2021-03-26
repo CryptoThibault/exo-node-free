@@ -4,6 +4,7 @@ const { readFileSync, writeFileSync, existsSync, mkdirSync, rmdirSync, unlinkSyn
 
 const commandList = ['.help', '.editor', '.chat', '.exit']
 const commandEditList = ['/cp', '/mkdir', '/rmdir', '/write', '/unlink']
+const commandChatList = ['/help', '-b', '-y', '-r', '-g', '-m', '-c', '/exit']
 const commandText = [
   '.help: Display the command list.',
   '.editor: Open the editor mode.',
@@ -11,11 +12,23 @@ const commandText = [
   '.exit: Close the program.'
 ]
 const commandEditText = [
+  '/help: Display the editor command list.',
   '/cp: Copy a file to another',
   '/mkdir: Create a directory',
   '/rmdir: Remove a directory',
   '/write: Write a file',
-  '/unlink: Remove a file'
+  '/unlink: Remove a file',
+  '/exit: Close the editor mode.'
+]
+const commandChatText = [
+  '/help: Display the chat command list.',
+  '-b: Write following text in blue.',
+  '-y: Write following text in yellow.',
+  '-r: Write following text in red.',
+  '-g: Write following text in green.',
+  '-m: Write following text in magenta.',
+  '-c: Write following text in cyan.',
+  '/exit: Close the editor mode.'
 ]
 var editorMode = false
 var chatMode = false
@@ -36,7 +49,7 @@ function useCommand(command) {
     case '.help': console.log(commandText.join('\n')); break
     case '.editor': editorMode = true; console.log('You open editor mode, type "/help" for more information.'); break
     case '.chat': chatMode = true; console.log('You open chat mode, you can write what you want.'); break
-    case '.exit': process.exit(1)
+    case '.exit': console.log('Goodbye from myNode.js.'); process.exit(1)
     default: console.log('Command invalid, type ".help" for more information.')
   }
   while (editorMode) {
@@ -55,6 +68,7 @@ function useCommand(command) {
   while (chatMode) {
     const typeChat = readLineSync.question('>> ').split(' ')
     switch (typeChat[0]) {
+      case '/help': console.log(commandChatText.join('\n')); break
       case '-b': console.log(chalk.blue(typeChat.join(' '))); break
       case '-y': console.log(chalk.yellow(typeChat.join(' '))); break
       case '-r': console.log(chalk.red(typeChat.join(' '))); break
