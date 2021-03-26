@@ -1,7 +1,7 @@
 const { readFileSync, writeFileSync, existsSync } = require('fs')
 
 if (process.argv.length != 4) {
-  console.log('usage: node cp copy paste')
+  console.log('usage: node cp origin copy')
   process.exit(1)
 }
 if (!existsSync(process.argv[2])) {

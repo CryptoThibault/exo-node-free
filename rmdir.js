@@ -1,4 +1,4 @@
-const { rmdirSync } = require('fs')
+const { rmdirSync, existsSync } = require('fs')
 
 if (process.argv.length != 3) {
   console.log('usage: node rmdir file')

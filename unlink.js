@@ -1,4 +1,4 @@
-const { unlinkSync } = require('fs')
+const { unlinkSync, existsSync } = require('fs')
 if (process.argv.length != 3) {
   console.log('usage: node unlink file')
   process.exit(1)
