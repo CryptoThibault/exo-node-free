@@ -1,3 +1,2 @@
-const readLineSync = require('readline-sync')
 const { writeFileSync } = require('fs')
-writeFileSync(readLineSync.question('Name of file : '), readLineSync.question('Enter your text : \n'))
+writeFileSync(process.argv[2], process.argv[3])
